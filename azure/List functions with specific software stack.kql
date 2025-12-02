@@ -1,0 +1,6 @@
+resources
+| where type == "microsoft.web/sites"
+| where kind contains "functionapp"
+| extend runtime = tostring(properties.siteConfig.linuxFxVersion)
+| where runtime has "XXXXX" //For example: "PYTHON|3.9"
+| project name, location, resourceGroup, subscriptionId ,runtime
