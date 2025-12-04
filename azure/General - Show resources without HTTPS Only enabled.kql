@@ -1,0 +1,5 @@
+resources
+| extend httpsOnly = tostring(properties.httpsOnly)
+| where isnotempty(httpsOnly) and httpsOnly == "false"
+| project name, type, location, resourceGroup, subscriptionId, httpsOnly
+| order by subscriptionId, resourceGroup
