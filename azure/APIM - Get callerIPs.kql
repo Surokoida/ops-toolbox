@@ -1,0 +1,4 @@
+apiManagementGatewayLogs
+| where isnotempty(ApiId) and ApiId contains "<API-ID>"
+| summarize TotalRequests = count() by CallerIpAddress
+| order by TotalRequests desc
