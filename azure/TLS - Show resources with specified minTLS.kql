@@ -1,0 +1,5 @@
+resources
+| extend minTls = tostring(properties.minimumTlsVersion)
+| where isnotempty(minTls) and minTls !in~ ("TLS1_2", "TLS1_3", "1.2", "1.3")
+| project name, type, location, resourceGroup, subscriptionId, minTls
+| order by subscriptionId, resourceGroup
